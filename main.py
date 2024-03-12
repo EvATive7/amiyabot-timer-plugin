@@ -266,7 +266,10 @@ async def fresh():
 
     if all_timer_list:
         timer_name, timer_time = all_timer_list[0]
-        new_nickname_str = '{} | 距{}{}h'.format(bot.get_config('amiyaNickName'), timer_name, int((timer_time-time.time()) / 3600))
+        timer_time = int((timer_time-time.time()) / 3600)
+        day = int(timer_time/24)
+        hour = timer_time - day*24
+        new_nickname_str = '{} | 距{} {}d{}h'.format(bot.get_config('amiyaNickName'), timer_name, day, hour)
     else:
         new_nickname_str = bot.get_config('amiyaNickName')
 
