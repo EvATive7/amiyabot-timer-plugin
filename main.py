@@ -260,7 +260,9 @@ async def fresh():
 
     act_timer_list = sorted(act_timer_list, key=lambda x: x[1])
     custom_timer_list = sorted(custom_timer_list, key=lambda x: x[1])
-    all_timer_list = custom_timer_list + act_timer_list
+    all_timer_list += custom_timer_list
+    if bot.get_config('activityAutoTimer'):
+        all_timer_list += act_timer_list
 
     if all_timer_list:
         timer_name, timer_time = all_timer_list[0]

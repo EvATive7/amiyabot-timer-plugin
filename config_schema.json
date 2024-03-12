@@ -8,6 +8,12 @@
             "description": "",
             "type": "string",
             "default": "Amiya"
+        },
+        "activityAutoTimer": {
+            "title": "自动解析活动时间",
+            "description": "",
+            "type": "boolean",
+            "default": false
         }
     }
 }
