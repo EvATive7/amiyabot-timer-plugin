@@ -47,7 +47,6 @@ bot = TimerPluginInstance(
     version='1.0',
     plugin_id='arknights-activity-remind',
     plugin_type='',
-    description='通过修改群名片的方式进行事件的倒计时提醒。',
     document=f'{curr_dir}/README.md',
     global_config_schema=f'{curr_dir}/config_schema.json',
     global_config_default=f'{curr_dir}/config_default.yaml'
