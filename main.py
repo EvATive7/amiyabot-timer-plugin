@@ -277,6 +277,7 @@ async def fresh():
             else:
                 time_str = f'{hour}h'
             new_nickname_str = '{} | 距{} {}'.format(bot.get_config('amiyaNickName'), timer_name, time_str)
+            break
 
     if new_nickname_str == last_nick_name:
         return
