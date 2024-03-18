@@ -263,14 +263,20 @@ async def fresh():
     if bot.get_config('activityAutoTimer'):
         all_timer_list += act_timer_list
 
+    new_nickname_str = bot.get_config('amiyaNickName')
     if all_timer_list:
-        timer_name, timer_time = all_timer_list[0]
-        timer_time = int((timer_time-time.time()) / 3600)
-        day = int(timer_time/24)
-        hour = timer_time - day*24
-        new_nickname_str = '{} | 距{} {}d{}h'.format(bot.get_config('amiyaNickName'), timer_name, day, hour)
-    else:
-        new_nickname_str = bot.get_config('amiyaNickName')
+        for timer_name, timer_time in all_timer_list:
+            timer_hour = int((timer_time-time.time()) / 3600)
+            if timer_hour == 0:
+                continue
+            day = int(timer_hour/24)
+            hour = timer_hour - day*24
+
+            if day != 0:
+                time_str = f'{day}d'
+            else:
+                time_str = f'{hour}h'
+            new_nickname_str = '{} | 距{} {}'.format(bot.get_config('amiyaNickName'), timer_name, time_str)
 
     if new_nickname_str == last_nick_name:
         return
