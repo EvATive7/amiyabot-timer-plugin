@@ -267,16 +267,20 @@ async def fresh():
     if all_timer_list:
         for timer_name, timer_time in all_timer_list:
             timer_hour = int((timer_time-time.time()) / 3600)
-            if timer_hour == 0:
-                continue
             day = int(timer_hour/24)
             hour = timer_hour - day*24
 
-            if day != 0:
-                time_str = f'{day}d'
+            if timer_hour == 0:
+                _time = datetime.fromtimestamp(timer_time)
+                _hour = _time.hour
+                time_str = f'{timer_name} 于 {_time:{_hour}:%M}'
             else:
-                time_str = f'{hour}h'
-            new_nickname_str = '{} | 距{} {}'.format(bot.get_config('amiyaNickName'), timer_name, time_str)
+                if day != 0:
+                    time_str = f'距{timer_name} {day}d'
+                else:
+                    time_str = f'距{timer_name} {hour}h'
+
+            new_nickname_str = '{} | {}'.format(bot.get_config('amiyaNickName'), time_str)
             break
 
     if new_nickname_str == last_nick_name:
